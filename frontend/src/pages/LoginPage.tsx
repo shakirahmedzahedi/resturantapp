@@ -9,11 +9,14 @@ interface Props {
 const defaultPositionByUsername: Record<string, number> = {
   counter1: 1,
   counter2: 2,
-  counter3: 3
+  counter3: 3,
+  counter4: 4,
+  counter5: 5,
+  counter6: 6
 };
 
 export default function LoginPage({ onLogin }: Props) {
-  const [username, setUsername] = useState("counter1");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("ChangeMe123!");
   const [role, setRole] = useState<UserRole>("ORDER_TAKER");
   const [positionId, setPositionId] = useState(1);
