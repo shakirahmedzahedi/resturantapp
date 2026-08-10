@@ -218,40 +218,54 @@ button:disabled {
 .token-modal {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.72);
-  display: grid;
-  place-items: center;
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
-  z-index: 20;
+  background: rgba(15, 23, 42, 0.78);
+  overflow-y: auto;
 }
 
 .token-card {
-  width: min(420px, 100%);
+  position: relative;
+  width: min(480px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
   background: white;
   border-radius: 24px;
   text-align: center;
-  padding: 30px;
+  padding: 26px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
 
 .token-card p {
-  font-size: 1.2rem;
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #166534;
 }
 
-.token-card span {
+.token-card > span {
   display: block;
+  margin-top: 4px;
   color: #637083;
+  font-size: 0.95rem;
 }
 
-.token-card strong {
+.token-card > strong {
   display: block;
-  font-size: 7rem;
-  line-height: 1;
-  margin: 14px 0;
+  margin: 10px 0 8px;
+  font-size: clamp(4.5rem, 14vw, 7rem);
+  line-height: 0.95;
+  color: #111827;
 }
 
 .token-card small {
   display: block;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
+  color: #637083;
+  font-size: 0.95rem;
 }
 
 .filter-row {
@@ -742,7 +756,47 @@ button:disabled {
 
 .product-price{display:block;margin-top:5px;font-size:1rem;color:#166534}.order-summary{background:#111827;color:#fff;padding:12px 18px;border-radius:16px;display:grid;gap:3px;text-align:right}.sales-notification{position:fixed;top:94px;left:50%;transform:translateX(-50%);width:min(620px,calc(100% - 32px));z-index:50;padding:17px 20px;border-radius:16px;background:#fef3c7;border:2px solid #f59e0b;box-shadow:0 15px 40px rgba(0,0,0,.22);display:flex;justify-content:space-between;gap:20px}.sales-notification>div{display:grid;gap:4px}.sales-notification button{border:0;background:transparent;font-size:1.8rem}.dashboard-summary{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr));gap:14px;margin-bottom:24px}.dashboard-summary article{background:#fff;border:1px solid #dfe4ec;border-radius:16px;padding:18px;display:grid;gap:8px}.dashboard-summary article:first-child{background:#111827;color:#fff}.dashboard-summary strong{font-size:1.7rem}.admin-orders-table-wrapper{overflow-x:auto;background:#fff;border-radius:16px;border:1px solid #dfe4ec}.admin-orders-table{width:100%;border-collapse:collapse}.admin-orders-table th,.admin-orders-table td{padding:14px 16px;text-align:left;border-bottom:1px solid #e5e7eb}.admin-orders-table th{background:#f8fafc}.order-details-modal{position:relative;width:min(520px,100%);background:#fff;border-radius:22px;padding:26px}.modal-close{position:absolute;right:16px;top:14px;border:0;background:transparent;font-size:2rem}.order-detail-items{margin:20px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;padding:12px 0}.order-detail-items>div{display:flex;justify-content:space-between;gap:18px;padding:8px 0}.order-detail-total{text-align:right;font-size:1.4rem;font-weight:800}@media(max-width:900px){.dashboard-summary{grid-template-columns:repeat(2,1fr)}}
 
-.payment-selector{margin-bottom:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.payment-selector>span{font-weight:800}.payment-selector button{min-width:120px;padding:13px 22px;border:2px solid #cbd5e1;border-radius:13px;background:white;font-weight:800}.payment-selector button.selected{color:white;background:#111827;border-color:#111827}.dashboard-summary .swish-card{background:#e0f2fe}.dashboard-summary .cash-card{background:#dcfce7}.token-items{margin:18px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;padding:10px 0}.token-items>div{display:flex;justify-content:space-between;gap:16px;padding:6px 0;text-align:left}.token-total{margin-bottom:18px;font-weight:900;font-size:1.25rem}
+.payment-selector{margin-bottom:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.payment-selector>span{font-weight:800}.payment-selector button{min-width:120px;padding:13px 22px;border:2px solid #cbd5e1;border-radius:13px;background:white;font-weight:800}.payment-selector button.selected{color:white;background:#111827;border-color:#111827}.dashboard-summary .swish-card{background:#e0f2fe}.dashboard-summary .cash-card{background:#dcfce7}.token-items {
+  margin: 16px 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 0;
+  text-align: left;
+}
+
+.token-items > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 2px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.token-items > div:last-child {
+  border-bottom: none;
+}
+
+.token-items > div span {
+  color: #172033;
+  font-size: 0.98rem;
+}
+
+.token-items > div strong {
+  white-space: nowrap;
+  color: #172033;
+  font-size: 1rem;
+}
+
+.token-total {
+  margin: 12px 0 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #111827;
+  color: white;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
 
 
 /* -------------------------------------------------
@@ -1070,5 +1124,69 @@ button:disabled {
 
   .current-order-modal {
     padding: 18px;
+  }
+}
+
+/* =================================================
+   SUBMIT ORDER SUCCESS POPUP
+   ================================================= */
+
+.token-card .primary-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+  .token-modal {
+    padding: 14px;
+  }
+
+  .token-card {
+    width: min(460px, 100%);
+    max-height: calc(100vh - 28px);
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .token-card > strong {
+    font-size: clamp(4rem, 12vw, 6rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .token-modal {
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .token-card {
+    width: 100%;
+    max-height: calc(100vh - 20px);
+    margin: auto 0;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .token-card p {
+    font-size: 1.1rem;
+  }
+
+  .token-card > strong {
+    font-size: 4.2rem;
+  }
+
+  .token-items > div {
+    gap: 10px;
+    padding: 7px 0;
+  }
+
+  .token-items > div span,
+  .token-items > div strong {
+    font-size: 0.92rem;
+  }
+
+  .token-total {
+    font-size: 1.1rem;
   }
 }
