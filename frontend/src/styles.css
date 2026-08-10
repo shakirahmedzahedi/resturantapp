@@ -530,7 +530,7 @@ button:disabled {
   }
 
   .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
     padding-bottom: 72px;
   }
@@ -563,15 +563,15 @@ button:disabled {
   }
 
   .quantity-control button {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    font-size: 1.15rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    font-size: 1.35rem;
   }
 
   .quantity-control strong {
-    min-width: 17px;
-    font-size: 0.95rem;
+    min-width: 20px;
+    font-size: 1.05rem;
   }
 
   .sticky-action {
@@ -675,7 +675,7 @@ button:disabled {
   }
 
   .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 5px;
   }
 
@@ -693,14 +693,14 @@ button:disabled {
   }
 
   .quantity-control button {
-    width: 28px;
-    height: 28px;
-    font-size: 1.05rem;
+    width: 34px;
+    height: 34px;
+    font-size: 1.25rem;
   }
 
   .quantity-control strong {
-    min-width: 15px;
-    font-size: 0.9rem;
+    min-width: 19px;
+    font-size: 1rem;
   }
 }
 
