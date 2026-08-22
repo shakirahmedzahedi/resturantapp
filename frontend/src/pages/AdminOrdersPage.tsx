@@ -4,40 +4,76 @@ import ErrorBanner from "../components/ErrorBanner";
 import Loading from "../components/Loading";
 import type { AdminDashboard, Order, Session } from "../types";
 
+function stockholmToday(): string {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Stockholm",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(new Date());
+
+  const year = parts.find((part) => part.type === "year")?.value ?? "";
+  const month = parts.find((part) => part.type === "month")?.value ?? "";
+  const day = parts.find((part) => part.type === "day")?.value ?? "";
+  return `${year}-${month}-${day}`;
+}
+
 export default function AdminOrdersPage({ session }: { session: Session }) {
   const [dashboard, setDashboard] = useState<AdminDashboard | null>(null);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [selectedDate, setSelectedDate] = useState(stockholmToday);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
   const loadDashboard = useCallback(async () => {
     try {
-      setDashboard(await api.getAdminDashboard(session));
+      setDashboard(await api.getAdminDashboard(session, selectedDate));
       setError("");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Dashboard could not load");
     } finally {
       setLoading(false);
     }
-  }, [session]);
+  }, [session, selectedDate]);
 
   useEffect(() => {
+    setLoading(true);
     loadDashboard();
     const timer = window.setInterval(loadDashboard, 5000);
     return () => window.clearInterval(timer);
   }, [loadDashboard]);
 
-  if (loading) return <Loading />;
+  if (loading && !dashboard) return <Loading />;
   if (!dashboard) return <ErrorBanner message={error || "Dashboard unavailable"} />;
 
   return (
     <section className="page-section">
-      <div className="section-heading">
+      <div className="section-heading admin-report-heading">
         <div>
           <h2>অর্ডার ও বিক্রির রিপোর্ট</h2>
           <p>{dashboard.businessDate}</p>
         </div>
-        <button className="secondary-button" onClick={loadDashboard}>রিফ্রেশ</button>
+
+        <div className="admin-date-filter">
+          <label>
+            <span>Date</span>
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(event) => setSelectedDate(event.target.value)}
+            />
+          </label>
+          <button
+            type="button"
+            className="secondary-button"
+            onClick={() => setSelectedDate(stockholmToday())}
+          >
+            Today
+          </button>
+          <button type="button" className="secondary-button" onClick={loadDashboard}>
+            রিফ্রেশ
+          </button>
+        </div>
       </div>
 
       {error && <ErrorBanner message={error} />}
@@ -85,6 +121,13 @@ export default function AdminOrdersPage({ session }: { session: Session }) {
                 </td>
               </tr>
             ))}
+            {dashboard.orders.length === 0 && (
+              <tr>
+                <td colSpan={7} className="admin-orders-empty">
+                  এই তারিখে কোনো অর্ডার নেই
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

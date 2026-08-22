@@ -6,3 +6,5 @@ export interface OrderItem{productId:number;productCode:string;nameEn:string|nul
 export interface Order{id:number;tokenNumber:number;businessDate:string;positionCode:string;positionName:string;createdBy:string;status:OrderStatus;paymentMethod:PaymentMethod;totalAmount:number;createdAt:string;items:OrderItem[]}
 export interface SalesNotification{id:number;thresholdAmount:number;totalSales:number;message:string;createdAt:string}
 export interface AdminDashboard{businessDate:string;totalOrders:number;newOrders:number;completedOrders:number;cancelledOrders:number;totalSales:number;swishSales:number;cashSales:number;orders:Order[]}
+export interface CustomerDisplayOrder{id:number;tokenNumber:number;positionName:string;status:"NEW"|"COMPLETED";createdAt:string;updatedAt:string}
+export interface CustomerDisplay{businessDate:string;received:CustomerDisplayOrder[];ready:CustomerDisplayOrder[]}

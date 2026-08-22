@@ -1,5 +1,6 @@
 import type {
   AdminDashboard,
+  CustomerDisplay,
   Order,
   OrderStatus,
   PaymentMethod,
@@ -46,7 +47,38 @@ async function request<T>(
   return response.json() as Promise<T>;
 }
 
+async function publicRequest<T>(
+  path: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const response = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers ?? {})
+    }
+  });
+
+  if (!response.ok) {
+    let message = `Request failed (${response.status})`;
+    try {
+      const body = await response.json();
+      message = body.message ?? message;
+    } catch {
+      // Keep the default message.
+    }
+    throw new Error(message);
+  }
+
+  return response.json() as Promise<T>;
+}
+
 export const api = {
+
+  getCustomerDisplay(): Promise<CustomerDisplay> {
+    return publicRequest("/customer-display");
+  },
+
   async verifyLogin(session: Session): Promise<void> {
     await request<Product[]>(session, "/products");
   },

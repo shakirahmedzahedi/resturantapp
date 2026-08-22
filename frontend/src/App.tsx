@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useState } from "react";
 import type { Session } from "./types";
 import { clearSession, loadSession, saveSession } from "./session";
@@ -7,9 +7,11 @@ import CounterPage from "./pages/CounterPage";
 import KitchenPage from "./pages/KitchenPage";
 import AdminPage from "./pages/AdminPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
+import CustomerDisplayPage from "./pages/CustomerDisplayPage";
 import Layout from "./components/Layout";
 
 export default function App() {
+  const location = useLocation();
   const [session, setSession] = useState<Session | null>(() => loadSession());
 
   function onLogin(next: Session) {
@@ -20,6 +22,10 @@ export default function App() {
   function onLogout() {
     clearSession();
     setSession(null);
+  }
+
+  if (location.pathname === "/customer-display") {
+    return <CustomerDisplayPage />;
   }
 
   if (!session) {
