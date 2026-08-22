@@ -109,9 +109,9 @@ export default function LoginPage({ onLogin }: Props) {
               <option value={1}>Counter 1</option>
               <option value={2}>Counter 2</option>
               <option value={3}>Counter 3</option>
-              <option value={1}>Counter 4</option>
-              <option value={2}>Counter 5</option>
-              <option value={3}>Counter 6</option>
+              <option value={4}>Counter 4</option>
+              <option value={5}>Counter 5</option>
+              <option value={6}>Counter 6</option>
             </select>
           </label>
         )}
