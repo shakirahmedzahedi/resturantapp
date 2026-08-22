@@ -155,4 +155,78 @@ public interface RestaurantOrderRepository
             @Param("date") LocalDate date,
             @Param("method") PaymentMethod method
     );
+
+
+    /*
+     * Admin - Counter 4 order list.
+     */
+    @EntityGraph(attributePaths = {
+            "items",
+            "items.product",
+            "position",
+            "createdBy"
+    })
+    List<RestaurantOrder>
+    findByBusinessDateAndPosition_PositionCodeOrderByCreatedAtDesc(
+            LocalDate date,
+            String positionCode
+    );
+
+
+    /*
+     * Admin - quantities sold for each product on one business date.
+     * Cancelled orders are excluded.
+     */
+    @Query("""
+            select
+                p.id,
+                p.productCode,
+                p.nameEn,
+                p.nameBn,
+                sum(i.quantity)
+            from OrderItem i
+            join i.order o
+            join i.product p
+            where o.businessDate = :date
+              and o.status <> com.example.restaurant.domain.OrderStatus.CANCELLED
+            group by p.id, p.productCode, p.nameEn, p.nameBn, p.displayOrder
+            order by p.displayOrder asc
+            """)
+    List<Object[]> findItemsSoldByBusinessDate(
+            @Param("date") LocalDate date
+    );
+
+
+    /*
+     * Admin - total non-cancelled sales for one counter.
+     */
+    @Query("""
+            select coalesce(sum(o.totalAmount), 0)
+            from RestaurantOrder o
+            where o.businessDate = :date
+              and o.position.positionCode = :positionCode
+              and o.status <> com.example.restaurant.domain.OrderStatus.CANCELLED
+            """)
+    BigDecimal sumNonCancelledOrderValueByPositionCode(
+            @Param("date") LocalDate date,
+            @Param("positionCode") String positionCode
+    );
+
+
+    /*
+     * Admin - total non-cancelled sales for one counter and payment method.
+     */
+    @Query("""
+            select coalesce(sum(o.totalAmount), 0)
+            from RestaurantOrder o
+            where o.businessDate = :date
+              and o.position.positionCode = :positionCode
+              and o.paymentMethod = :method
+              and o.status <> com.example.restaurant.domain.OrderStatus.CANCELLED
+            """)
+    BigDecimal sumNonCancelledOrderValueByPositionCodeAndPaymentMethod(
+            @Param("date") LocalDate date,
+            @Param("positionCode") String positionCode,
+            @Param("method") PaymentMethod method
+    );
 }

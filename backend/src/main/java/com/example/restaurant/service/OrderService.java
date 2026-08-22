@@ -355,6 +355,58 @@ public class OrderService {
     }
 
 
+    /**
+     * Admin-only status update for Counter 4.
+     * The order ID is validated so this endpoint cannot update another counter's order.
+     */
+    @Transactional
+    public OrderResponse updateCounter4Status(
+            Long id,
+            UpdateStatusRequest request,
+            Authentication auth
+    ) {
+        RestaurantOrder order = find(id);
+
+        if (!EXCLUDED_COUNTER.equals(order.getPosition().getPositionCode())) {
+            throw new BadRequestException(
+                    "Only Counter 4 orders can be updated from the Counter 4 admin page"
+            );
+        }
+
+        OrderStatus oldStatus = order.getStatus();
+        OrderStatus nextStatus = request.status();
+
+        if (oldStatus != OrderStatus.NEW) {
+            throw new BadRequestException(
+                    "Only NEW orders can be completed or cancelled"
+            );
+        }
+
+        if (nextStatus != OrderStatus.COMPLETED
+                && nextStatus != OrderStatus.CANCELLED) {
+            throw new BadRequestException(
+                    "A NEW order can only change to COMPLETED or CANCELLED"
+            );
+        }
+
+        order.setStatus(nextStatus);
+        RestaurantOrder saved = orders.saveAndFlush(order);
+
+        events.publishEvent(
+                OrderEvent.statusChanged(
+                        saved.getId(),
+                        saved.getTokenNumber(),
+                        saved.getPosition().getPositionCode(),
+                        oldStatus.name(),
+                        nextStatus.name(),
+                        auth.getName()
+                )
+        );
+
+        return OrderResponse.from(saved);
+    }
+
+
     private RestaurantOrder find(Long id) {
 
         return orders

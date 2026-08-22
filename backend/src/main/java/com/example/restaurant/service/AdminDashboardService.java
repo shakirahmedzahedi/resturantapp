@@ -4,6 +4,8 @@ import com.example.restaurant.domain.OrderStatus;
 import com.example.restaurant.domain.PaymentMethod;
 import com.example.restaurant.domain.RestaurantOrder;
 import com.example.restaurant.dto.AdminDashboardResponse;
+import com.example.restaurant.dto.Counter4DashboardResponse;
+import com.example.restaurant.dto.ItemSalesResponse;
 import com.example.restaurant.dto.OrderResponse;
 import com.example.restaurant.repository.RestaurantOrderRepository;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Service
 public class AdminDashboardService {
+
+    private static final String COUNTER_4 = "COUNTER-4";
 
     private final RestaurantOrderRepository orders;
 
@@ -39,6 +43,52 @@ public class AdminDashboardService {
                 orders.sumNonCancelledOrderValueByPaymentMethod(date, PaymentMethod.SWISH),
                 orders.sumNonCancelledOrderValueByPaymentMethod(date, PaymentMethod.CASH),
                 all.stream().map(OrderResponse::from).toList()
+        );
+    }
+
+    /**
+     * Quantity sold for every product on a business date.
+     * Cancelled orders are not included. Counter 4 is included because this is an admin report.
+     */
+    @Transactional(readOnly = true)
+    public List<ItemSalesResponse> itemsSold(LocalDate date) {
+        return orders.findItemsSoldByBusinessDate(date)
+                .stream()
+                .map(row -> new ItemSalesResponse(
+                        ((Number) row[0]).longValue(),
+                        (String) row[1],
+                        (String) row[2],
+                        (String) row[3],
+                        ((Number) row[4]).longValue()
+                ))
+                .toList();
+    }
+
+    /**
+     * Admin-only Counter 4 view. Counter 4 remains hidden from Kitchen and Customer Display.
+     */
+    @Transactional(readOnly = true)
+    public Counter4DashboardResponse counter4(LocalDate date) {
+        List<RestaurantOrder> counter4Orders =
+                orders.findByBusinessDateAndPosition_PositionCodeOrderByCreatedAtDesc(
+                        date,
+                        COUNTER_4
+                );
+
+        return new Counter4DashboardResponse(
+                date,
+                counter4Orders.size(),
+                count(counter4Orders, OrderStatus.NEW),
+                count(counter4Orders, OrderStatus.COMPLETED),
+                count(counter4Orders, OrderStatus.CANCELLED),
+                orders.sumNonCancelledOrderValueByPositionCode(date, COUNTER_4),
+                orders.sumNonCancelledOrderValueByPositionCodeAndPaymentMethod(
+                        date, COUNTER_4, PaymentMethod.SWISH
+                ),
+                orders.sumNonCancelledOrderValueByPositionCodeAndPaymentMethod(
+                        date, COUNTER_4, PaymentMethod.CASH
+                ),
+                counter4Orders.stream().map(OrderResponse::from).toList()
         );
     }
 
