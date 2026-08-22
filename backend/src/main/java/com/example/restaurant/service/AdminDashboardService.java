@@ -65,7 +65,8 @@ public class AdminDashboardService {
     }
 
     /**
-     * Admin-only Counter 4 view. Counter 4 remains hidden from Kitchen and Customer Display.
+     * Admin-only Counter 4 view. The live board contains NEW orders only.
+     * Completed/cancelled orders remain included in the summary/report counts.
      */
     @Transactional(readOnly = true)
     public Counter4DashboardResponse counter4(LocalDate date) {
@@ -74,6 +75,11 @@ public class AdminDashboardService {
                         date,
                         COUNTER_4
                 );
+
+        List<OrderResponse> pendingOrders = counter4Orders.stream()
+                .filter(order -> order.getStatus() == OrderStatus.NEW)
+                .map(OrderResponse::from)
+                .toList();
 
         return new Counter4DashboardResponse(
                 date,
@@ -88,7 +94,7 @@ public class AdminDashboardService {
                 orders.sumNonCancelledOrderValueByPositionCodeAndPaymentMethod(
                         date, COUNTER_4, PaymentMethod.CASH
                 ),
-                counter4Orders.stream().map(OrderResponse::from).toList()
+                pendingOrders
         );
     }
 

@@ -45,7 +45,7 @@ export default function Counter4AdminPage({ session }: { session: Session }) {
 
   return <section className="page-section">
     <div className="section-heading admin-report-heading">
-      <div><h2>Counter 4 Management</h2><p>Admin-only order management for Counter 4</p></div>
+      <div><h2>Counter 4 Management</h2><p>Pending Counter 4 orders. Completed or cancelled orders disappear from this board.</p></div>
       <div className="admin-date-filter">
         <label><span>Date</span><input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} /></label>
         <button type="button" className="secondary-button" onClick={() => setSelectedDate(stockholmToday())}>Today</button>
@@ -62,7 +62,7 @@ export default function Counter4AdminPage({ session }: { session: Session }) {
       <article><span>Completed</span><strong>{dashboard.completedOrders}</strong></article>
       <article><span>Cancelled</span><strong>{dashboard.cancelledOrders}</strong></article>
     </div>
-    {dashboard.orders.length === 0 ? <div className="empty-state">No Counter 4 orders for this date.</div> :
+    {dashboard.orders.length === 0 ? <div className="empty-state">No pending Counter 4 orders for this date.</div> :
       <div className="counter4-orders">{dashboard.orders.map((order) =>
         <article className={`order-card status-${order.status.toLowerCase()}`} key={order.id}>
           <div className="order-card-header">

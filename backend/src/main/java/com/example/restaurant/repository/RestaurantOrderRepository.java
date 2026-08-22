@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,10 +112,11 @@ public interface RestaurantOrderRepository
             "position"
     })
     List<RestaurantOrder>
-    findTop20ByBusinessDateAndStatusAndPosition_PositionCodeNotOrderByUpdatedAtDesc(
+    findTop20ByBusinessDateAndStatusAndPosition_PositionCodeNotAndUpdatedAtGreaterThanEqualOrderByUpdatedAtDesc(
             LocalDate date,
             OrderStatus status,
-            String excludedPositionCode
+            String excludedPositionCode,
+            LocalDateTime updatedAfter
     );
 
 

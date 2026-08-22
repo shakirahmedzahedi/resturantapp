@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -218,7 +219,7 @@ public class OrderService {
      * All NEW orders except Counter 4.
      *
      * READY:
-     * Latest 20 COMPLETED orders except Counter 4.
+     * Latest 20 COMPLETED orders except Counter 4, visible for at most 15 minutes.
      */
     @Transactional(readOnly = true)
     public CustomerDisplayResponse customerDisplayToday() {
@@ -247,15 +248,18 @@ public class OrderService {
         /*
          * READY orders.
          *
-         * Latest 20 completed orders.
+         * Latest 20 completed orders from the last 15 minutes.
          * Counter 4 is excluded.
          */
+        LocalDateTime readyCutoff = LocalDateTime.now().minusMinutes(15);
+
         List<CustomerDisplayOrderResponse> ready =
                 orders
-                        .findTop20ByBusinessDateAndStatusAndPosition_PositionCodeNotOrderByUpdatedAtDesc(
+                        .findTop20ByBusinessDateAndStatusAndPosition_PositionCodeNotAndUpdatedAtGreaterThanEqualOrderByUpdatedAtDesc(
                                 today,
                                 OrderStatus.COMPLETED,
-                                EXCLUDED_COUNTER
+                                EXCLUDED_COUNTER,
+                                readyCutoff
                         )
                         .stream()
                         .map(CustomerDisplayOrderResponse::from)
