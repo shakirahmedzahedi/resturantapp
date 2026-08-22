@@ -1,6 +1,8 @@
 import type {
   AdminDashboard,
+  Counter4Dashboard,
   CustomerDisplay,
+  ItemSales,
   Order,
   OrderStatus,
   PaymentMethod,
@@ -152,6 +154,27 @@ export const api = {
   getAdminDashboard(session: Session, date?: string): Promise<AdminDashboard> {
     const query = date ? `?date=${encodeURIComponent(date)}` : "";
     return request(session, `/admin/dashboard${query}`);
+  },
+
+  getItemsSold(session: Session, date?: string): Promise<ItemSales[]> {
+    const query = date ? `?date=${encodeURIComponent(date)}` : "";
+    return request(session, `/admin/dashboard/items-sold${query}`);
+  },
+
+  getCounter4Dashboard(session: Session, date?: string): Promise<Counter4Dashboard> {
+    const query = date ? `?date=${encodeURIComponent(date)}` : "";
+    return request(session, `/admin/dashboard/counter4${query}`);
+  },
+
+  updateCounter4Status(
+    session: Session,
+    orderId: number,
+    status: "COMPLETED" | "CANCELLED"
+  ): Promise<Order> {
+    return request(session, `/admin/dashboard/counter4/orders/${orderId}/status`, {
+      method: "PATCH",
+      body: JSON.stringify({ status })
+    });
   },
 
   getNotifications(session: Session, afterId: number): Promise<SalesNotification[]> {

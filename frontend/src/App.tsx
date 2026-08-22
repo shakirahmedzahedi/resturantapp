@@ -8,6 +8,8 @@ import KitchenPage from "./pages/KitchenPage";
 import AdminPage from "./pages/AdminPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import CustomerDisplayPage from "./pages/CustomerDisplayPage";
+import ItemsSoldPage from "./pages/ItemsSoldPage";
+import Counter4AdminPage from "./pages/Counter4AdminPage";
 import Layout from "./components/Layout";
 
 export default function App() {
@@ -79,6 +81,9 @@ export default function App() {
               : <Navigate to={defaultPath} replace />
           }
         />
+
+        <Route path="/admin/items-sold" element={session.role === "ADMIN" ? <ItemsSoldPage session={session} /> : <Navigate to={defaultPath} replace />} />
+        <Route path="/admin/counter4" element={session.role === "ADMIN" ? <Counter4AdminPage session={session} /> : <Navigate to={defaultPath} replace />} />
 
         <Route path="*" element={<Navigate to={defaultPath} replace />} />
       </Routes>
