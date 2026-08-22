@@ -48,3 +48,8 @@ management:
     health:
       probes:
         enabled: true
+
+restaurant:
+  # All daily order/token/report boundaries use this timezone.
+  # Override with RESTAURANT_BUSINESS_ZONE if needed.
+  business-zone: ${RESTAURANT_BUSINESS_ZONE:Europe/Stockholm}
