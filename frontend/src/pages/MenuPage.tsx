@@ -29,7 +29,7 @@ const menuItems: MenuItem[] = [
   { id: "aam-vorta", nameBn: "আম ভর্তা", nameEn: "Aam Vorta", price: 30, image: "/menu/items/aam-vorta.webp" },
   { id: "jambura-vorta", nameBn: "জাম্বুরা ভর্তা", nameEn: "Jambura Vorta", price: 30, image: "/menu/items/jambura-vorta.webp" },
   { id: "achar", nameBn: "আচার", nameEn: "Achar", price: 60, image: "/menu/items/achar.webp" },
-  { id: "white-misti", nameBn: "সাদা মিষ্টি", nameEn: "White Misti", price: 20, image: "/menu/items/white-misti.webp" },
+  { id: "white-misti", nameBn: "সাদা মিষ্টি", nameEn: "White Misti", price: 30, image: "/menu/items/white-misti.webp" },
   { id: "chomchom", nameBn: "চমচম", nameEn: "Chomchom", price: 25, image: "/menu/items/chomchom.webp" },
   { id: "kalojam", nameBn: "কালোজাম", nameEn: "Kalojam", price: 25, image: "/menu/items/kalojam.webp" },
   { id: "pudding", nameBn: "পুডিং", nameEn: "Pudding", price: 30, image: "/menu/items/pudding.webp" },
