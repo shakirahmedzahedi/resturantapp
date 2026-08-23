@@ -121,6 +121,10 @@ export default function LoginPage({ onLogin }: Props) {
         <button className="primary-button" disabled={busy}>
           {busy ? "লগইন হচ্ছে..." : "লগইন"}
         </button>
+
+        <a className="public-menu-login-link" href="/menu">
+          মেনু দেখুন
+        </a>
       </form>
     </div>
   );

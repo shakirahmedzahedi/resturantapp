@@ -16,6 +16,7 @@ export default function Layout({session,onLogout,children}:{session:Session;onLo
           <NavLink to="/admin/counter4">Counter 4</NavLink>
           <NavLink to="/admin">প্রোডাক্ট</NavLink>
         </>}
+        <a href="/menu" target="_blank" rel="noreferrer">Menu</a>
         <a href="/customer-display" target="_blank" rel="noreferrer">Customer Display</a>
         <button className="ghost-button" onClick={onLogout}>লগআউট</button>
       </nav>

@@ -8,6 +8,7 @@ import KitchenPage from "./pages/KitchenPage";
 import AdminPage from "./pages/AdminPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import CustomerDisplayPage from "./pages/CustomerDisplayPage";
+import MenuPage from "./pages/MenuPage";
 import ItemsSoldPage from "./pages/ItemsSoldPage";
 import Counter4AdminPage from "./pages/Counter4AdminPage";
 import Layout from "./components/Layout";
@@ -28,6 +29,10 @@ export default function App() {
 
   if (location.pathname === "/customer-display") {
     return <CustomerDisplayPage />;
+  }
+
+  if (location.pathname === "/menu") {
+    return <MenuPage />;
   }
 
   if (!session) {
