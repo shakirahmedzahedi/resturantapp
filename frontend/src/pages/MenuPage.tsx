@@ -52,7 +52,6 @@ export default function MenuPage() {
     <main className="public-menu-page">
       <header className="public-menu-header">
         <div>
-          <p className="public-menu-kicker">FACE MEDIA PRESENTS</p>
           <h1>মিরাবাই</h1>
           <p>হেইলা দুইলা, হেইলা দরবার নাচায়</p>
         </div>
@@ -61,7 +60,6 @@ export default function MenuPage() {
           <a href="#items">খাবার</a>
           <a href="#full-menu">সম্পূর্ণ মেনু</a>
           <a href="#specials">কম্বো</a>
-          <Link to="/">লগইন</Link>
         </div>
       </header>
 
@@ -145,7 +143,7 @@ export default function MenuPage() {
 
       <footer className="public-menu-footer">
         <strong>মিরাবাই</strong>
-        <span>মেনু দেখতে এই পেজটি সবার জন্য উন্মুক্ত</span>
+
       </footer>
 
       {selectedItem && (
