@@ -10,7 +10,7 @@ type MenuItem = {
 };
 
 const menuImages = {
-  full: "/menu/full-menu.webp",
+  full: "/menu/full-menu.png",
   combo1: "/menu/combo-1.webp",
   combo2: "/menu/combo-2.webp"
 };
@@ -42,7 +42,8 @@ const menuItems: MenuItem[] = [
   { id: "red-bull", nameBn: "রেড বুল", nameEn: "Red Bull", price: 40, image: "/menu/items/red-bull.webp" },
   { id: "popcorn", nameBn: "পপকর্ন", nameEn: "Popcorn", price: 30, image: "/menu/items/popcorn.webp" },
   { id: "macaron", nameBn: "ম্যাকারন প্যাকেট", nameEn: "Macaron Packet", price: 30, image: "/menu/items/macaron.webp" },
-  { id: "hot-dog", nameBn: "হট ডগ", nameEn: "Hot Dog", price: 20, image: "/menu/items/hot-dog.webp" }
+  { id: "hot-dog", nameBn: "হট ডগ", nameEn: "Hot Dog", price: 20, image: "/menu/items/hot-dog.webp" },
+  { id: "Chicken-wrap", nameBn: "", nameEn: "Chicken wrap", price: 50, image: "/menu/items/chicken-wrap.png" }
 ];
 
 export default function MenuPage() {
@@ -75,7 +76,7 @@ export default function MenuPage() {
             <span>FOOD ITEMS</span>
             <h2>প্রতিটি খাবার</h2>
           </div>
-          <p>{menuItems.length} টি আইটেম</p>
+
         </div>
 
         <div className="public-menu-item-grid">
@@ -128,7 +129,7 @@ export default function MenuPage() {
             <span>SPECIAL</span>
             <h2>কম্বো অফার</h2>
           </div>
-          <p>নির্দিষ্ট খাবারের বড় ছবি</p>
+
         </div>
 
         <div className="public-menu-special-grid">
