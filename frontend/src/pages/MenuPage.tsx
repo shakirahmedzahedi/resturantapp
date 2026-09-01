@@ -10,40 +10,41 @@ type MenuItem = {
 };
 
 const menuImages = {
-  full: "/menu/full-menu.png",
+  full: "/menu/menunew.png",
   combo1: "/menu/combo-1.webp",
-  combo2: "/menu/combo-2.webp"
+  combo2: "/menu/combo2.png"
 };
 
 const menuItems: MenuItem[] = [
-  { id: "fuchka", nameBn: "ফুচকা", nameEn: "Fuchka", price: 50, image: "/menu/items/fuchka.webp" },
-  { id: "chotpoti", nameBn: "চটপটি", nameEn: "Chotpoti", price: 50, image: "/menu/items/chotpoti.webp" },
-  { id: "doi-bora", nameBn: "দই বড়া", nameEn: "Doi Bora", price: 30, image: "/menu/items/doi-bora.webp" },
-  { id: "jhal-muri", nameBn: "ঝাল মুড়ি", nameEn: "Jhal Muri", price: 30, image: "/menu/items/jhal-muri.webp" },
-  { id: "boot-piyaju", nameBn: "বুট + পিয়াজু", nameEn: "Boot + Piyaju", price: 30, image: "/menu/items/boot-piyaju.webp" },
-  { id: "singara", nameBn: "সিঙ্গারা", nameEn: "Singara", price: 30, image: "/menu/items/singara.webp" },
-  { id: "roll", nameBn: "রোল", nameEn: "Roll", price: 30, image: "/menu/items/roll.webp" },
-  { id: "chitoy", nameBn: "চিতই", nameEn: "Chitoi", price: 25, image: "/menu/items/chitoy.webp" },
-  { id: "halim", nameBn: "হালিম", nameEn: "Halim", price: 50, image: "/menu/items/halim.webp" },
-  { id: "tehari", nameBn: "তেহারি", nameEn: "Tehari", price: 100, image: "/menu/items/tehari.webp" },
-  { id: "aam-vorta", nameBn: "আম ভর্তা", nameEn: "Aam Vorta", price: 30, image: "/menu/items/aam-vorta.webp" },
-  { id: "jambura-vorta", nameBn: "জাম্বুরা ভর্তা", nameEn: "Jambura Vorta", price: 30, image: "/menu/items/jambura-vorta.webp" },
-  { id: "achar", nameBn: "আচার", nameEn: "Achar", price: 60, image: "/menu/items/achar.webp" },
-  { id: "white-misti", nameBn: "সাদা মিষ্টি", nameEn: "White Misti", price: 30, image: "/menu/items/white-misti.webp" },
-  { id: "chomchom", nameBn: "চমচম", nameEn: "Chomchom", price: 25, image: "/menu/items/chomchom.webp" },
-  { id: "kalojam", nameBn: "কালোজাম", nameEn: "Kalojam", price: 25, image: "/menu/items/kalojam.webp" },
-  { id: "pudding", nameBn: "পুডিং", nameEn: "Pudding", price: 30, image: "/menu/items/pudding.webp" },
-  { id: "lolly", nameBn: "ললি", nameEn: "Lolly", price: 20, image: "/menu/items/lolly.webp" },
-  { id: "cha", nameBn: "চা", nameEn: "Cha", price: 30, image: "/menu/items/cha.webp" },
-  { id: "coffee", nameBn: "কফি", nameEn: "Coffee", price: 25, image: "/menu/items/coffee.webp" },
+  { id: "fuchka", nameBn: "ফুচকা", nameEn: "Fuchka", price: 50, image: "/menu/items/fuchka.jpeg" },
+  { id: "chotpoti", nameBn: "চটপটি", nameEn: "Chotpoti", price: 50, image: "/menu/items/chotpoti.jpeg" },
+  { id: "doi-bora", nameBn: "দই বড়া", nameEn: "Doi Bora", price: 30, image: "/menu/items/Doibora.jpeg" },
+  { id: "jhal-muri", nameBn: "ঝাল মুড়ি", nameEn: "Jhal Muri", price: 30, image: "/menu/items/jalmuri.jpeg" },
+  { id: "boot-piyaju", nameBn: "বুট + পিয়াজু", nameEn: "Boot + Piyaju", price: 30, image: "/menu/items/but.jpeg" },
+  { id: "singara", nameBn: "সিঙ্গারা", nameEn: "Singara", price: 30, image: "/menu/items/singara.jpeg" },
+  { id: "roll", nameBn: "রোল", nameEn: "Roll", price: 30, image: "/menu/items/role.jpeg" },
+  { id: "chitoy", nameBn: "চিতই", nameEn: "Chitoi", price: 25, image: "/menu/items/chitoi.jpeg" },
+  { id: "halim", nameBn: "হালিম", nameEn: "Halim", price: 50, image: "/menu/items/halim.jpeg" },
+  { id: "tehari", nameBn: "তেহারি", nameEn: "Tehari", price: 100, image: "/menu/items/tehari.jpeg" },
+  { id: "aam-vorta", nameBn: "আম ভর্তা", nameEn: "Aam Vorta", price: 30, image: "/menu/items/aamvorta.jpeg" },
+  { id: "jambura-vorta", nameBn: "আমসত্ত্ব", nameEn: "Aam Sotto", price: 40, image: "/menu/items/aam sotto.jpeg" },
+  { id: "achar", nameBn: "আচার", nameEn: "Achar", price: 60, image: "/menu/items/achar.jpeg" },
+  { id: "white-misti", nameBn: "সাদা মিষ্টি", nameEn: "White Misti", price: 30, image: "/menu/items/whitemisty.jpeg" },
+  { id: "chomchom", nameBn: "চমচম", nameEn: "Chomchom", price: 25, image: "/menu/items/chomchom.jpeg" },
+  { id: "kalojam", nameBn: "কালোজাম", nameEn: "Kalojam", price: 25, image: "/menu/items/kalojam.jpeg" },
+  { id: "pudding", nameBn: "পুডিং", nameEn: "Pudding", price: 30, image: "/menu/items/puding.jpeg" },
+  { id: "candypack", nameBn: "ক্যান্ডি প্যাকেট", nameEn: "Candy Packet", price: 20, image: "/menu/items/candypack.png" },
+  { id: "cha", nameBn: "চা", nameEn: "Cha", price: 30, image: "/menu/items/cha.jpeg" },
+  { id: "coffee", nameBn: "কফি", nameEn: "Coffee", price: 25, image: "/menu/items/coffe.jpeg" },
   { id: "water", nameBn: "পানি", nameEn: "Water", price: 20, image: "/menu/items/water.webp" },
   { id: "coke", nameBn: "কোক", nameEn: "Coke", price: 20, image: "/menu/items/coke.webp" },
-  { id: "mango-juice", nameBn: "ম্যাংগো জুস", nameEn: "Mango Juice", price: 15, image: "/menu/items/mango-juice.webp" },
+  { id: "mango-juice", nameBn: "জুস", nameEn: "Juice", price: 15, image: "/menu/items/mango-juice.webp" },
   { id: "red-bull", nameBn: "রেড বুল", nameEn: "Red Bull", price: 40, image: "/menu/items/red-bull.webp" },
   { id: "popcorn", nameBn: "পপকর্ন", nameEn: "Popcorn", price: 30, image: "/menu/items/popcorn.webp" },
-  { id: "macaron", nameBn: "ম্যাকারন প্যাকেট", nameEn: "Macaron Packet", price: 30, image: "/menu/items/macaron.webp" },
+  { id: "CupCake", nameBn: "কাপকেক", nameEn: "Cup Cake", price: 30, image: "/menu/items/cupcake.jpeg" },
   { id: "hot-dog", nameBn: "হট ডগ", nameEn: "Hot Dog", price: 20, image: "/menu/items/hot-dog.webp" },
-  { id: "Chicken-wrap", nameBn: "", nameEn: "Chicken wrap", price: 50, image: "/menu/items/chicken-wrap.png" }
+  { id: "Chicken-wrap", nameBn: "চিকেন র‍্যাপ", nameEn: "Chicken wrap", price: 60, image: "/menu/items/chicken-wrap.png" },
+  { id: "chickenNuggets','চিকেন নাগেটস", nameBn: "চিকেন নাগেটস", nameEn: "Chicken Nuggets", price: 50, image: "/menu/items/chickenNuggets.jpeg" }
 ];
 
 export default function MenuPage() {
