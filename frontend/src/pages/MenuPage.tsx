@@ -10,15 +10,16 @@ type MenuItem = {
 };
 
 const menuImages = {
-  full: "/menu/fullmenu2.jpeg",
+  full: "/menu/menu3.jpeg",
   combo1: "/menu/combo-1.webp",
-  combo2: "/menu/combo2.png"
+  combo2: "/menu/combo2.png",
+  tehari:"/menu/terari1.jpeg"
 };
 
 const menuItems: MenuItem[] = [
   { id: "fuchka", nameBn: "ফুচকা", nameEn: "Fuchka", price: 50, image: "/menu/items/fuchka.jpeg" },
   { id: "chotpoti", nameBn: "চটপটি", nameEn: "Chotpoti", price: 50, image: "/menu/items/chotpoti.jpeg" },
-  { id: "doi-bora", nameBn: "দই বড়া", nameEn: "Doi Bora", price: 30, image: "/menu/items/Doibora.jpeg" },
+  { id: "doi-bora", nameBn: "দই বড়া", nameEn: "Doi Bora", price: 40, image: "/menu/items/Doibora.jpeg" },
   { id: "jhal-muri", nameBn: "ঝাল মুড়ি", nameEn: "Jhal Muri", price: 30, image: "/menu/items/jalmuri.jpeg" },
   { id: "boot-piyaju", nameBn: "বুট + পিয়াজু", nameEn: "Boot + Piyaju", price: 30, image: "/menu/items/but.jpeg" },
   { id: "singara", nameBn: "সিঙ্গারা", nameEn: "Singara", price: 30, image: "/menu/items/singara.jpeg" },
@@ -140,6 +141,9 @@ export default function MenuPage() {
           <article className="public-menu-special-card">
             <img src={menuImages.combo2} alt="কম্বো ২ - মিষ্টি, সিঙ্গারা ও পানি" />
           </article>
+          <article className="public-menu-special-card">
+             <img src={menuImages.tehari} alt="তেহারি ও পানি" />
+           </article>
         </div>
       </section>
 
