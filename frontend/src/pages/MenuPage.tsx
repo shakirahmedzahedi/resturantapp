@@ -13,7 +13,7 @@ const menuImages = {
   full: "/menu/menu3.jpeg",
   combo1: "/menu/combo-1.webp",
   combo2: "/menu/combo2.png",
-  tehari:"/menu/terari1.jpeg"
+  tehari:"/menu/tehari1.jpeg"
 };
 
 const menuItems: MenuItem[] = [
